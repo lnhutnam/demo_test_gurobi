@@ -1,16 +1,12 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.5)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-set(MY_PROJECT_NAME test_gurobi)
-project(${MY_PROJECT_NAME})
+project(gurobi-template C)
 
 option(CXX "enable C++ compilation" ON)
 
 if(CXX)
   enable_language(CXX)
 endif()
-
-find_package(Gurobi REQUIRED)
 
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR})
 if(NOT CMAKE_BUILD_TYPE)
@@ -25,6 +21,8 @@ if(MSVC AND MT)
   set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} /MT")
   set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} /MTd")
 endif()
+
+find_package(GUROBI REQUIRED)
 
 include_directories(${GUROBI_INCLUDE_DIRS})
 
